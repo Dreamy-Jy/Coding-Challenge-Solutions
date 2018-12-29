@@ -1,3 +1,4 @@
+import random
 """
     Q.6 Find the least common ancestor (LCA) of two nodes in a binary search tree
     Please read the key vector {500,300,600,550,700,750,200,150,250,350,800}
@@ -5,7 +6,6 @@
 """
 test_tree = [500, 300, 600, 550, 700, 750, 200, 150, 250, 350, 800]
 
-import random
 rand_one = random.randint(0, len(test_tree))
 rand_two = random.randint(0, len(test_tree))
 
@@ -13,12 +13,14 @@ rand_two = random.randint(0, len(test_tree))
 NOTE: why do the loop by dept instead of index and check if the index is the range for that number.
 TODO: Add error handling
 """
+
+
 def getDepth(index):
     """Returns the dept of an value in an heap, starting with 0"""
     depth_end = 0
     depth = 0
 
-    for i in range(index +1):
+    for i in range(index + 1):
         if i > depth_end:
             depth = depth + 1
             depth_end += 2**depth
@@ -30,7 +32,7 @@ def getParentIndex(index):
     if index == 0:
         return 0
 
-    return int(index -(index //2) -1)
+    return int(index - (index // 2) - 1)
 
 
 def getLeastCommonAncestor(index_a, index_b):
@@ -40,7 +42,7 @@ def getLeastCommonAncestor(index_a, index_b):
 
     if a_parent == b_parent:
         return a_parent
-    
+
     if a_parent == 0 or b_parent == 0:
         return 0
 
