@@ -11,6 +11,9 @@ By considering the terms in the Fibonacci sequence whose
 values do not exceed four million, find the sum of the
 even-valued terms.
 """
+import math
+
+# TODO Make the outputs of brute_force() and fibonacci_formula_solution() equal
 
 
 def brute_force(limit: int) -> int:
@@ -25,7 +28,8 @@ def brute_force(limit: int) -> int:
             fib_seq[seq_end] + fib_seq[seq_end - 1])
         seq_end = len(fib_seq) - 1
 
-    # Remove unnesscary values from the list
+    # Removes unnesscary values from the list
+    # TODO Make this more efficent with pops
     fib_seq = fib_seq[2:len(fib_seq) - 1]
 
     # sum all the even numbers in the list
@@ -34,3 +38,35 @@ def brute_force(limit: int) -> int:
             fib_sum += num
 
     return fib_sum
+
+
+# NOTE Untested
+def fibonacci_formula_solution(limit: int)->int:
+    if limit < 2:
+        return 0
+
+    fib_sum = 2
+    fib = 2
+    n = 3
+
+    # TODO refactor this loop, that if is unacceptable.
+    while fib < limit:
+        n += 3
+        fib = calculate_fibonacci_at(n)
+
+        if fib > limit:
+            return fib_sum
+
+        fib_sum += fib
+
+    return fib_sum
+
+
+# NOTE Untested
+def calculate_fibonacci_at(n: int) -> int:
+    '''Calculates the fiboncci number at `n`, using the fibonacci formula.'''
+    𝛷: float = (1 + math.sqrt(5)) / 2
+
+    𝜑: float = (1 - math.sqrt(5)) / 2
+
+    return int((math.pow(𝛷, n) - math.pow(𝜑, n)) / math.sqrt(5))
