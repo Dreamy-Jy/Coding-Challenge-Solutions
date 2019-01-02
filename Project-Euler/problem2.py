@@ -11,3 +11,26 @@ By considering the terms in the Fibonacci sequence whose
 values do not exceed four million, find the sum of the
 even-valued terms.
 """
+
+
+def brute_force(limit: int) -> int:
+    fib_seq = [0, 1]
+    seq_end = len(fib_seq) - 1
+    fib_sum = 0
+
+    # generate the fibonacci sequence that ends in a
+    # number greater than or equal to the 'limit' parameter
+    while fib_seq[seq_end] < limit:
+        fib_seq.append(
+            fib_seq[seq_end] + fib_seq[seq_end - 1])
+        seq_end = len(fib_seq) - 1
+
+    # Remove unnesscary values from the list
+    fib_seq = fib_seq[2:len(fib_seq) - 1]
+
+    # sum all the even numbers in the list
+    for num in fib_seq:
+        if num % 2 == 0:
+            fib_sum += num
+
+    return fib_sum

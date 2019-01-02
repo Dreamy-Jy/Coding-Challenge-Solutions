@@ -38,11 +38,11 @@ How do these solutions preform differently?
 def series_solution(below):
     if type(below) is not int:
         raise TypeError(
-            "the 'below' parameter of the brute_force() function must be of type int()")
+            "the 'below' parameter of the series_solution() function must be of type int()")
 
     if below < 0:
         raise ValueError(
-            "the 'below' parameter of the brute_force() function must be NON-negative")
+            "the 'below' parameter of the series_solution() function must be NON-negative")
 
     sum3 = sum_series(below, 3)
     sum5 = sum_series(below, 5)
