@@ -1,4 +1,6 @@
 '''
+🌩Dreamy-Jy🌩 back at it again ⚡️...
+
 Daily Coding Problem: Problem #3
 
 Given the root to a binary tree,
@@ -13,6 +15,7 @@ class Node:
         self.val = val
         self.left = left
         self.right = right
+
 The following test should pass:
 
 node = Node('root', Node('left', Node('left.left')), Node('right'))
@@ -31,17 +34,35 @@ class Node:
 
 # TODO get rid of the trailing white space
 def preorder_serialize(head: Node, seperator: str = " ", ender: str = "|") -> str:
-    if head == None:
-        return ""
-    if head.right == None and head.left == None:
-        return str(head.val) + seperator + ender + seperator
 
-    return str(head.val) + seperator + preorder_serialize(head.left, seperator) + preorder_serialize(head.right, seperator)
+    def serialize(head: Node, seperator: str = " ", ender: str = "|") -> str:
+        if head == None:
+            return ""
+        if head.right == None and head.left == None:
+            return str(head.val) + seperator + ender + seperator
+
+        return str(head.val) + seperator + preorder_serialize(head.left, seperator, ender) + preorder_serialize(head.right, seperator, ender)
+
+    def clean(string: str) ->str:
+        return string
+
+    serialized_data = serialize(head)
+    return serialized_data
 
 
 # NOTE I'm considering adding a type denoter
-def preorder_deserialize(string_rep: str) -> Node:
-    pass
+def preorder_deserialize(string_rep: str, value_seperator=" ", leaf_indicator="|") -> Node:
+    place = [0]  # acts as a global holder of place in string.
+
+    # this is the heap that represents the data.
+    heap = string_rep.split(value_seperator)
+
+    def deserialize(string, leaf_indicator):
+        if string[place] == leaf_indicator:
+            place[0] += 1
+            return None
+
+        print
 
 
 def postorder_serialize(head: Node) -> str:
