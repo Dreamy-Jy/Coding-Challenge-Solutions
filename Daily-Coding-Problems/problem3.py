@@ -22,6 +22,9 @@ node = Node('root', Node('left', Node('left.left')), Node('right'))
 assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 Can you do this without recursion?
+
+NOTE - 
+The other part of the solution is 
 '''
 
 
@@ -93,6 +96,7 @@ if __name__ == "__main__":
     node = Node('root', Node('left', Node('left.left')), Node('right'))
     assert preorder_deserialize(preorder_serialize(
         node)).left.left.val == 'left.left'
+
 '''
     assert postorder_deserialize(
         postorder_serialize(node)).left.left.val == 'left.left'
